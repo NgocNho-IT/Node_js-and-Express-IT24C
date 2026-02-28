@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Book collection</title>
-</head>
+<% if (typeof title === 'undefined') title = "" %>
+<% if (typeof books === 'undefined') books = [{subject: "", author: ""}]; %>
+
+<%- include('../layouts/header', {title: title}) %>
+
 <body>
     Home - Book collection
+    <ul>
+        <% books.forEach(function(book){ %>
+            <li>
+                <%= book.subject %> by <%= book.author %>
+            </li>
+        <% }); %>
+    </ul>
+
+    <%- message %>
+    <%#- message %> 
+<img src="/images/mo-hinh-mvc.jpg" alt="MVC model" width="300px" height="200px">
+
+<!-- Thử nghiệm  -->
+<audio src="/audios/Track (7).mp3" controls></audio>
+<!-- Thử nghiệm  -->
+<video src="/videos/Baitap3_DangNgocNho_108976.mp4" width="300px" height="200px" controls></video>
 </body>
 </html>

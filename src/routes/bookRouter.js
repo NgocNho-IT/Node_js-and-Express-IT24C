@@ -5,4 +5,8 @@ bookRouter.get('/all', bookController.getAll)
 
 bookRouter.post('/add', bookController.add)
 
+bookRouter.get('/detail/:id', bookController.getDetailById)
+
+bookRouter.get('/search', bookController.search)
+
 module.exports = bookRouter;

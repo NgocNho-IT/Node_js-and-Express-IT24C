@@ -10,7 +10,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // View engine setup
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
-
+// body parser setup
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // Routing setup
 setupRoutes(app)
 

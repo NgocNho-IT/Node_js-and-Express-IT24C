@@ -1,0 +1,75 @@
+<form id="addBookForm" novalidate>
+    <!-- Name -->
+    <div class="form-group">
+        <label for="name">Name*:</label>
+        <input type="text" class="form-control" id="name" name="name"
+            required>
+        <div class="invalid-feedback"> Required information </div>
+    </div>
+
+    <!-- Author -->
+    <div class="form-group">
+        <label for="author">Author*:</label>
+        <input type="text" class="form-control" id="author" name="author" placeholder="Enter the author's name"
+            required>
+        <div class="invalid-feedback"> Required information </div>
+    </div>
+
+    <!-- Publication Year -->
+    <div class="form-group">
+        <label for="publication_year">Publication Year*:</label>
+        <input type="number" class="form-control" id="publication_year" name="publication_year" placeholder="Enter the publication year">
+    </div>
+
+    <!-- Type -->
+    <div class="form-group">
+        <label for="type">Type*:</label>
+        <input type="text" class="form-control" id="type" name="type" placeholder="Enter the book type"
+            required>
+        <div class="invalid-feedback"> Required information </div>
+    </div>
+
+</form>
+
+<button type="button" onclick="submitForm()">
+    Submit
+</button>
+<script>
+    function submitForm() {
+
+        const form = document.getElementById('addBookForm');
+        if (form.checkValidity()) {
+            // submit form to /books/add using fetch API
+            const formData = new FormData(form);
+            const urlEncodedData = new URLSearchParams(formData);
+            fetch('/books/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: urlEncodedData,
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json().then(data => {
+                        alert('Book added successfully!');
+                        console.log('Success:', data);
+                        form.reset();
+                        form.classList.remove('was-validated');
+                    });
+                } else {
+                    return response.text().then(errorMessage => {
+                        alert('Error: ' + errorMessage);
+                        console.error('Server error:', errorMessage);
+                    });
+                }
+            })
+            .catch(error => {
+                alert('Network error: ' + error.message);
+                console.error('Error:', error);
+            });
+        } else {
+            form.classList.add('was-validated');
+        }
+    }
+</script>

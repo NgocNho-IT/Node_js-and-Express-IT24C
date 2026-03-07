@@ -1,12 +1,14 @@
 const express = require('express');
 const bookRouter = express.Router();
-const bookController = require('../controllers/bookController.js')
-bookRouter.get('/all', bookController.getAll)
+const bookController = require('../controllers/bookController.js');
+bookRouter.get('/all', bookController.getAll);
 
-bookRouter.post('/add', bookController.add)
+bookRouter.post('/add', bookController.add); //API
 
-bookRouter.get('/detail/:id', bookController.getDetailById)
+bookRouter.get('/add-book', bookController.addBook);// UI
 
-bookRouter.get('/search', bookController.search)
+bookRouter.get('/detail/:id', bookController.getDetailById);
+
+bookRouter.get('/search', bookController.search);
 
 module.exports = bookRouter;

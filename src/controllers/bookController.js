@@ -9,6 +9,7 @@ function getAll(req, res) {
 async function addBook(req, res) {
     res.render('books/add-book');
 }
+
 async function add(req, res) {
     const bookData = req.body;
     // console.log('BookData: ', bookData);

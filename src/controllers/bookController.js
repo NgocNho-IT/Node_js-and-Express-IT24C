@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { bookJoiSchema_add } = require('../helpers/joi_helpers');
-const { writeBookToDB } = require('../model/index');
+
 
 function getAll(req, res) {
     res.status(StatusCodes.OKE).send('List of all books from controller');

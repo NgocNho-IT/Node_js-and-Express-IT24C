@@ -3,9 +3,12 @@ const morgan = require('morgan');
 const path = require('path');
 const app = express();
 const setupRoutes = require('./routes/index.js');
-
+const conectDB = require('./model/database.js')
 //logger setup
 app.use(morgan('dev'))
+
+conectDB();
+
 app.use(express.static(path.join(__dirname, 'public')))
 // View engine setup
 app.set('view engine', 'ejs')
